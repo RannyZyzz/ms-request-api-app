@@ -62,4 +62,4 @@ Sinta-se à vontade para contribuir com melhorias, correções de bugs ou sugest
 
 ## Licença
 
-Este projeto está licenciado sob a [MIT License](LICENSE)
+Este projeto está licenciado sob a [MIT License](LICENSE).
