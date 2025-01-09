@@ -3,10 +3,15 @@ import { Sidebar } from './components/Sidebar';
 import { RequestPanel } from './components/RequestPanel';
 import { initialFolders } from './data/initialData';
 import { Folder, Request } from './types';
+import { AuthManager } from './utils/authManager';
 
 const App: React.FC = () => {
     const [folders, setFolders] = React.useState<Folder[]>(initialFolders);
     const [selectedRequest, setSelectedRequest] = React.useState<Request | null>(null);
+
+    React.useEffect(() => {
+        AuthManager.initializeFromUrl();
+    }, []);
 
     const handleSelectRequest = (folderId: string, requestId: string) => {
         const folder = folders.find(f => f.id === folderId);
