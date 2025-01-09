@@ -3,14 +3,11 @@ import axios from 'axios';
 import { Request } from '../types';
 import { PlayIcon, StopIcon } from '@heroicons/react/24/solid';
 import { ResponsePanel } from './ResponsePanel';
-import { AuthManager } from '../utils/authManager';
 
 interface RequestPanelProps {
     request: Request;
     onUpdateRequest: (updatedRequest: Request) => void;
 }
-const chavePasse = AuthManager.getStoredToken();
-window.alert(chavePasse);
 
 export const RequestPanel: React.FC<RequestPanelProps> = ({
     request,

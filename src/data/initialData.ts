@@ -1,4 +1,5 @@
 import { Folder } from "../types";
+import { AuthManager } from "../utils/authManager"; // Ajuste o caminho conforme necessário
 
 export const initialFolders: Folder[] = [
     {
@@ -16,8 +17,8 @@ export const initialFolders: Folder[] = [
                 },
                 body: JSON.stringify({
                     instanciaApp: '1',
-                    chavePasse: 'nasihd12877bas',
-                    chaveFuncionalidade: '92993-918293823-28738273'
+                    chavePasse: AuthManager.getStoredToken(), // Aqui estamos utilizando a função para obter a chavePasse
+                    chaveFuncionalidade: '2ddf2e18-6997-44e0-ac2a-7a4fb3c05b7f'
                 }, null, 2)
             },
             {
@@ -31,10 +32,10 @@ export const initialFolders: Folder[] = [
                 },
                 body: JSON.stringify({
                     instanciaApp: '1',
-                    chavePasse: 'nasihd12877bas',
-                    chaveFuncionalidade: '92993-918293823-28738273'
+                    chavePasse: AuthManager.getStoredToken(), // Aqui estamos utilizando a função para obter a chavePasse
+                    chaveFuncionalidade: '2ddf2e18-6997-44e0-ac2a-7a4fb3c05b7f'
                 }, null, 2)
             }
         ]
     }
-]
+];
