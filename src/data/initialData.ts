@@ -1,6 +1,9 @@
 import { Folder } from "../types";
 import { AuthManager } from "../utils/authManager";
 
+const currentDate = new Date();
+const formattedDate = currentDate.toISOString().slice(0, 19).replace('T', ' ');
+
 export const initialFolders: Folder[] = [
     {
         id: '1',
@@ -177,7 +180,7 @@ export const initialFolders: Folder[] = [
                         email: "rannier@mobilesaude.com.br",
                         telefone: "48984137055",
                     },
-                    anotacao: "[Fale Conosco] - Ocorrência criada via API lol",
+                    anotacao: "[API criar ocorrência] - Ocorrência criada via API lol",
                     formularios: [
                         {
                             idForm: "64dcd2b1342146345191ee00",
@@ -236,7 +239,7 @@ export const initialFolders: Folder[] = [
                 },
                 body: JSON.stringify({
                     publica: false,
-                    mensagem: "[Fale Conosco] - Anotação criada via API lol",
+                    mensagem: "[API criar anotação] - Anotação criada via API lol",
                     idAtendente: 274,
                     chaveUnicaSolicitante: "90994281978",
                     arquivos: [
@@ -276,6 +279,216 @@ export const initialFolders: Folder[] = [
                 body: JSON.stringify({
 
                 }, null, 2)
+            },
+            {
+                id: '4-7',
+                name: 'ocorrenAlterarDatas',
+                method: 'PUT',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/ocorrencias/665544120250110090002/datas',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
+                },
+                body: JSON.stringify({
+                    motivo: "[API Alterar datas] - Data alterada via API lol",
+                    dataEncerramento: '',
+                    dataCriacao: formattedDate,
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/3393191937/Api+clientes+-+Alterar+Datas'
+            }
+        ]
+    },
+    {
+        id: '5',
+        name: 'Mensageria',
+        requests: [
+            {
+                id: '5-1',
+                name: 'menPush',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/mensageria/envio',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
+                },
+                body: JSON.stringify({
+                    chaveUnica: "90994281978",
+                    msg: "[API envio de push] - Nova notícia!",
+                    idFuncionalidade: 0,
+                    idRegistro: 945,
+                    msgRegistrarPush: true,
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2534047762/Api+Clientes+-+Envio+de+mensagem'
+            },
+            {
+                id: '5-2',
+                name: 'menWhatsAvulso',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/mensageria/whatsapp/envioAvulso',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
+                },
+                body: JSON.stringify({
+                    identificadorMsg: "1",
+                    idConfigWhatsapp: "63a45bfa127abfa74c1ac6b2",
+                    template: {
+                        id: "sdfsdfsdfew432434",
+                        vars: {
+                            header: [
+                                {
+                                    remover: "Wanderson"
+                                }
+                            ],
+                            body: [
+                                {
+                                    remover: "200000215454545445"
+                                }
+                            ]
+                        }
+                    },
+                    celularDestinatario: {
+                        celular: "27992480823"
+                    },
+                    agendamento: {
+                        dataHoraEnvio: "2022-12-29 17:25:40"
+                    }
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2597683210/Api+Clientes+-+Envio+de+mensagem+Whatsapp'
+            },
+            {
+                id: '5-3',
+                name: 'menWhatsContato',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/mensageria/whatsapp/envioPorContato',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
+                },
+                body: JSON.stringify({
+                    identificadorMsg: "1",
+                    idConfigWhatsapp: "63a45bfa127abfa74c1ac6b2",
+                    template: {
+                        id: "sdfsdfdsfe435345fgdsfsd",
+                        vars: {
+                            header: [
+                                {
+                                    remover: "Wanderson"
+                                }
+                            ],
+                            body: [
+                                {
+                                    remover: "200000215454545445"
+                                }
+                            ]
+                        }
+                    },
+                    celularDestinatario: {
+                        celular: "27992480823"
+                    },
+                    contatoDestinatario: {
+                        chaveUnica: "everson@mobilesaude.com.br"
+                    },
+                    ocorrencia: {
+                        protocolo: "2000000000015452004"
+                    },
+                    contato: {
+                        nome: "Geraldo",
+                        chaveUnica: "01911165615",
+                        celular: "278282828",
+                    },
+                    agendamento: {
+                        dataHoraEnvio: "2022-12-29 17:25:40"
+                    }
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2597683210/Api+Clientes+-+Envio+de+mensagem+Whatsapp'
+            },
+            {
+                id: '5-4',
+                name: 'menWhatsMidiaAvulso',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/mensageria/midia/avulso',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
+                },
+                body: JSON.stringify({
+                    identificadorMsg: "1",
+                    idConfigWhatsapp: "63a45bfa127abfa74c1ac6b",
+                    template: {
+                        id: "sdfsdfsdfew432434",
+                        vars: {
+                            body: [
+                                {
+                                    remover: "200000215454545445"
+                                }
+                            ]
+                        }
+                    },
+                    celularDestinatario: {
+                        celular: "27999999999"
+                    },
+                    agendamento: {
+                        dataHoraEnvio: "2022-12-29 17:25:40"
+                    },
+                    attachments: [
+                        {
+                            name: "hello-word.png",
+                            contentType: "image/png",
+                            base64: "iVBORw0KGgoAAAANSUhEUgAABDgAAAkkCAIAAAB2sV..."
+                        }
+                    ]
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2597552344/Api+Clientes+-+Envio+de+mensagem+com+m+dia+Whatsapp'
+            },
+            {
+                id: '5-5',
+                name: 'menWhatsMidiaContato',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/mensageria/midia/contato',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
+                },
+                body: JSON.stringify({
+                    identificadorMsg: "1",
+                    idConfigWhatsapp: "63a45bfa127abfa74c1ac6",
+                    template: {
+                        id: "sdfsdfdsfe435345fgdsfsd",
+                        vars: {
+                            body: [
+                                {
+                                    remover: "200000215454545445"
+                                }
+                            ]
+                        }
+                    },
+                    celularDestinatario: {
+                        celular: "27999999999"
+                    },
+                    contatoDestinatario: {
+                        chaveUnica: "everson@mobilesaude.com.br"
+                    },
+                    ocorrencia: {
+                        protocolo: "2000000000015452004"
+                    },
+                    contato: {
+                        nome: "Geraldo",
+                        chaveUnica: "01911165615",
+                        celular: "278282828",
+                    },
+                    agendamento: {
+                        dataHoraEnvio: "2022-12-29 17:25:40"
+                    },
+                    attachments: [
+                        {
+                            name: "hello-word.png",
+                            contentType: "image/png",
+                            base64: "iVBORw0KGgoAAAANSUhEUgAABDgAAAkkCAIAAAB2sV..."
+                        }
+                    ]
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2597552344/Api+Clientes+-+Envio+de+mensagem+com+m+dia+Whatsapp'
             }
         ]
     }
