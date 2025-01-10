@@ -88,7 +88,7 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
                     status: response.status,
                     statusText: response.statusText,
                     data: response.data,
-                    headers: response.headers,
+                    headers: Object.fromEntries(Object.entries(response.headers).map(([key, value]) => [key, value?.toString()])),
                     time: Date.now() - startTime
                 }
             });
