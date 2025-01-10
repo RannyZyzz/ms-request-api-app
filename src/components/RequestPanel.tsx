@@ -126,6 +126,29 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
         }
     };
 
+    const renderClickableLink = (text: string) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.split('\n').map((line, index) => (
+            <div key={index}>
+                {line.split(urlRegex).map((part, i) =>
+                    urlRegex.test(part) ? (
+                        <a
+                            key={i}
+                            href={part}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-500 hover:underline"
+                        >
+                            {part}
+                        </a>
+                    ) : (
+                        part
+                    )
+                )}
+            </div>
+        ));
+    };
+
     return (
         <div className="flex-1 p-4 overflow-auto">
             <div className="flex items-center space-x-4 mb-4">
@@ -231,7 +254,7 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
                     ) : (
                         <div className="space-y-2">
                             <pre className="bg-gray-100 p-4 rounded whitespace-pre-wrap">
-                                {request?.docs || 'Sem documentação disponível'}
+                                {request?.docs ? renderClickableLink(request.docs) : 'Sem documentação disponível'}
                             </pre>
                         </div>
                     )}
