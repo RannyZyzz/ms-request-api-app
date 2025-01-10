@@ -33,6 +33,13 @@ export const ResponsePanel: React.FC<ResponsePanelProps> = ({ response }) => {
         }
     };
 
+    const copyToClipboard = (text: string) => {
+        navigator.clipboard.writeText(text).then(() => {
+        }).catch(err => {
+            console.error('Erro ao copiar para a área de transferência:', err);
+        });
+    };
+
     return (
         <div className="border rounded mt-4">
             <div className="p-4 border-b bg-gray-50">
@@ -64,13 +71,29 @@ export const ResponsePanel: React.FC<ResponsePanelProps> = ({ response }) => {
 
             <div className="p-4">
                 {response.error ? (
-                    <pre className="bg-gray-50 p-4 rounded overflow-auto max-h-96">
-                        {formatJson(response.data)}
-                    </pre>
+                    <div>
+                        <pre className="bg-gray-50 p-4 rounded overflow-auto max-h-96">
+                            {formatJson(response.data)}
+                        </pre>
+                        <button
+                            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                            onClick={() => copyToClipboard(formatJson(response.data))}
+                        >
+                            Copiar Resposta
+                        </button>
+                    </div>
                 ) : activeTab === 'body' ? (
-                    <pre className="bg-gray-50 p-4 rounded overflow-auto max-h-96">
-                        {formatJson(response.data)}
-                    </pre>
+                    <div>
+                        <pre className="bg-gray-50 p-4 rounded overflow-auto max-h-96">
+                            {formatJson(response.data)}
+                        </pre>
+                        <button
+                            className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                            onClick={() => copyToClipboard(formatJson(response.data))}
+                        >
+                            Copiar Resposta
+                        </button>
+                    </div>
                 ) : (
                     <div className="space-y-2">
                         {Object.entries(response.headers || {}).map(([key, value]) => (
