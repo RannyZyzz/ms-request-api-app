@@ -13,7 +13,7 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
     request,
     onUpdateRequest
 }) => {
-    const [activeTab, setActiveTab] = React.useState<'headers' | 'body'>('headers');
+    const [activeTab, setActiveTab] = React.useState<'headers' | 'body'>('body'); // Inicia com 'body'
     const [isLoading, setIsLoading] = React.useState(false);
     const [response, setResponse] = React.useState<any>(null);
     const abortControllerRef = React.useRef<AbortController | null>(null);
@@ -164,21 +164,28 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
             <div className="border rounded mb-4">
                 <div className="flex border-b">
                     <button
-                        className={`px-4 py-2 ${activeTab === 'headers' ? 'bg-gray-100' : ''}`}
-                        onClick={() => setActiveTab('headers')}
-                    >
-                        Headers
-                    </button>
-                    <button
                         className={`px-4 py-2 ${activeTab === 'body' ? 'bg-gray-100' : ''}`}
                         onClick={() => setActiveTab('body')}
                     >
                         Body
                     </button>
+                    <button
+                        className={`px-4 py-2 ${activeTab === 'headers' ? 'bg-gray-100' : ''}`}
+                        onClick={() => setActiveTab('headers')}
+                    >
+                        Headers
+                    </button>
                 </div>
 
                 <div className="p-4">
-                    {activeTab === 'headers' ? (
+                    {activeTab === 'body' ? (
+                        <textarea
+                            value={request.body || ''}
+                            onChange={(e) => onUpdateRequest({ ...request, body: e.target.value })}
+                            className="w-full h-64 px-2 py-1 border rounded font-mono"
+                            placeholder="Request body (JSON)"
+                        />
+                    ) : (
                         <div className="space-y-2">
                             {Object.entries(request.headers || {}).map(([key, value], index) => (
                                 <div key={index} className="flex space-x-2">
@@ -211,13 +218,6 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
                                 + Add Header
                             </button>
                         </div>
-                    ) : (
-                        <textarea
-                            value={request.body || ''}
-                            onChange={(e) => onUpdateRequest({ ...request, body: e.target.value })}
-                            className="w-full h-64 px-2 py-1 border rounded font-mono"
-                            placeholder="Request body (JSON)"
-                        />
                     )}
                 </div>
             </div>
