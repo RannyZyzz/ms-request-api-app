@@ -19,7 +19,8 @@ export const initialFolders: Folder[] = [
                     instanciaApp: '1',
                     chavePasse: AuthManager.getStoredToken(),
                     chaveFuncionalidade: '2ddf2e18-6997-44e0-ac2a-7a4fb3c05b7f'
-                }, null, 2)
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/3427303431/Obter+dados+chavePasse'
             },
             {
                 id: '1-2',
@@ -34,7 +35,8 @@ export const initialFolders: Folder[] = [
                     instanciaApp: '1',
                     chavePasse: AuthManager.getStoredToken(),
                     chaveFuncionalidade: '2ddf2e18-6997-44e0-ac2a-7a4fb3c05b7f'
-                }, null, 2)
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2464219139/Obter+dados+usuarioLogado'
             },
             {
                 id: '1-3',
@@ -49,7 +51,8 @@ export const initialFolders: Folder[] = [
                     instanciaApp: '1',
                     chavePasse: AuthManager.getStoredToken(),
                     chaveFuncionalidade: '2ddf2e18-6997-44e0-ac2a-7a4fb3c05b7f'
-                }, null, 2)
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2464022540/Obter+dados+grupoFamiliar'
             },
             {
                 id: '1-4',
@@ -64,7 +67,8 @@ export const initialFolders: Folder[] = [
                     instanciaApp: '1',
                     chavePasse: AuthManager.getStoredToken(),
                     chaveFuncionalidade: '2ddf2e18-6997-44e0-ac2a-7a4fb3c05b7f'
-                }, null, 2)
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2463957004/Obter+dados+sistema+e+geolocaliza+o'
             },
             {
                 id: '1-5',
@@ -79,7 +83,8 @@ export const initialFolders: Folder[] = [
                     instanciaApp: '1',
                     chavePasse: AuthManager.getStoredToken(),
                     chaveFuncionalidade: '2ddf2e18-6997-44e0-ac2a-7a4fb3c05b7f'
-                }, null, 2)
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/3124953089/Obter+dados+termo+de+uso\n\nOBS: Para realizar essa requisição a funcionalidade precisa estar com uma ocorrência ativada nos termos de uso'
             }
         ]
     },
@@ -98,7 +103,8 @@ export const initialFolders: Folder[] = [
                 },
                 body: JSON.stringify({
 
-                }, null, 2)
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/3124953089/Obter+dados+termo+de+uso'
             },
             {
                 id: '2-2',

@@ -13,7 +13,7 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
     request,
     onUpdateRequest
 }) => {
-    const [activeTab, setActiveTab] = React.useState<'headers' | 'body'>('body'); // Inicia com 'body'
+    const [activeTab, setActiveTab] = React.useState<'headers' | 'body' | 'docs'>('body'); // Adicionado 'docs'
     const [isLoading, setIsLoading] = React.useState(false);
     const [response, setResponse] = React.useState<any>(null);
     const abortControllerRef = React.useRef<AbortController | null>(null);
@@ -69,7 +69,6 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
         abortControllerRef.current = new AbortController();
 
         try {
-
             const config: any = {
                 method: request.method.toLowerCase(),
                 url: request.url,
@@ -175,6 +174,12 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
                     >
                         Headers
                     </button>
+                    <button
+                        className={`px-4 py-2 ${activeTab === 'docs' ? 'bg-gray-100' : ''}`}
+                        onClick={() => setActiveTab('docs')}
+                    >
+                        Docs
+                    </button>
                 </div>
 
                 <div className="p-4">
@@ -185,7 +190,7 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
                             className="w-full h-64 px-2 py-1 border rounded font-mono"
                             placeholder="Request body (JSON)"
                         />
-                    ) : (
+                    ) : activeTab === 'headers' ? (
                         <div className="space-y-2">
                             {Object.entries(request.headers || {}).map(([key, value], index) => (
                                 <div key={index} className="flex space-x-2">
@@ -217,6 +222,12 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
                             >
                                 + Add Header
                             </button>
+                        </div>
+                    ) : (
+                        <div className="space-y-2">
+                            <pre className="bg-gray-100 p-4 rounded whitespace-pre-wrap">
+                                {request?.docs || 'Sem documentação disponível'}
+                            </pre>
                         </div>
                     )}
                 </div>

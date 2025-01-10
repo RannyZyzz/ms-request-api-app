@@ -5,6 +5,7 @@ export interface Request {
     url: string;
     headers?: Record<string, string>;
     body?: string;
+    docs?: string;
 }
 
 export interface Folder {

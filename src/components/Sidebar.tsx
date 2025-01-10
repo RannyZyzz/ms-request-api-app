@@ -23,10 +23,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         )
     }
 
+    const handleRefreshToken = () => {
+        window.location.reload();
+    }
+
     return (
-        <div className="w-64 bg-gray-100 h-screen p-4">
+        <div className="w-64 bg-gray-100 h-screen p-4 flex flex-col">
             <h2 className="text-lg font-semibold mb-4">MS Omnichannel</h2>
-            <div className="space-y-2">
+            <div className="space-y-2 flex-grow">
                 {folders.map(folder => (
                     <div key={folder.id}>
                         <div
@@ -66,6 +70,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
                     </div>
                 ))}
             </div>
+            <button
+                onClick={handleRefreshToken}
+                className="mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+            >
+                Refresh chavePasse
+            </button>
         </div>
     );
 };
