@@ -13,9 +13,8 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
     request,
     onUpdateRequest
 }) => {
-    const [activeTab, setActiveTab] = React.useState<'headers' | 'body' | 'docs'>('body'); // Adicionado 'docs'
+    const [activeTab, setActiveTab] = React.useState<'headers' | 'body' | 'docs'>('body');
     const [isLoading, setIsLoading] = React.useState(false);
-    const [response, setResponse] = React.useState<any>(null);
     const abortControllerRef = React.useRef<AbortController | null>(null);
 
     const handleUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,7 +64,6 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
         setIsLoading(true);
         const startTime = Date.now();
 
-        // Criar novo AbortController para esta requisição
         abortControllerRef.current = new AbortController();
 
         try {
@@ -77,36 +75,43 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
             };
 
             if (request.method === 'GET') {
-                // Se for uma requisição GET, passa os dados como parâmetros na URL
                 config.params = request.body ? JSON.parse(request.body) : undefined;
             } else {
-                // Para outros métodos, passa os dados no corpo da requisição
                 config.data = request.body ? JSON.parse(request.body) : undefined;
             }
 
             const response = await axios(config);
 
-            setResponse({
-                status: response.status,
-                statusText: response.statusText,
-                data: response.data,
-                headers: response.headers,
-                time: Date.now() - startTime
+            onUpdateRequest({
+                ...request,
+                response: {
+                    status: response.status,
+                    statusText: response.statusText,
+                    data: response.data,
+                    headers: response.headers,
+                    time: Date.now() - startTime
+                }
             });
         } catch (error: any) {
             if (error.name === 'AbortError') {
-                setResponse({
-                    error: 'Request cancelled',
-                    time: Date.now() - startTime
+                onUpdateRequest({
+                    ...request,
+                    response: {
+                        error: 'Request cancelled',
+                        time: Date.now() - startTime
+                    }
                 });
             } else {
-                setResponse({
-                    error: error.message,
-                    status: error.response?.status,
-                    statusText: error.response?.statusText,
-                    data: error.response?.data,
-                    headers: error.response?.headers,
-                    time: Date.now() - startTime
+                onUpdateRequest({
+                    ...request,
+                    response: {
+                        error: error.message,
+                        status: error.response?.status,
+                        statusText: error.response?.statusText,
+                        data: error.response?.data,
+                        headers: error.response?.headers,
+                        time: Date.now() - startTime
+                    }
                 });
             }
         } finally {
@@ -233,7 +238,7 @@ export const RequestPanel: React.FC<RequestPanelProps> = ({
                 </div>
             </div>
 
-            <ResponsePanel response={response} />
+            <ResponsePanel response={request.response || null} />
         </div>
     );
 };
