@@ -491,5 +491,144 @@ export const initialFolders: Folder[] = [
                 docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2597552344/Api+Clientes+-+Envio+de+mensagem+com+m+dia+Whatsapp'
             }
         ]
+    },
+    {
+        id: '6',
+        name: 'Meetings',
+        requests: [
+            {
+                id: '6-1',
+                name: 'meetingsCriar',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/meetings/criar',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': '',
+                    'instancia_aplicacao': ''
+                },
+                body: JSON.stringify({
+                    identificadorExterno: "564657688",
+                    chaveUnica: "90994281978",
+                    tipoMeeting: 1,
+                    responsavelAtendimento: {
+                        nome: "Ranniêr Reis",
+                        chaveUnica: "90994281978"
+                    },
+                    paciente: {
+                        chaveUnica: "90994281978",
+                        numeroContrato: "00000000001"
+                    }
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2968780801/API+de+clientes+-+Criar+meeting'
+            },
+            {
+                id: '6-2',
+                name: 'meetingsCancelar',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/meetings/cancelar',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': '',
+                    'instancia_aplicacao': ''
+                },
+                body: JSON.stringify({
+                    identificadorExterno: "564657688",
+                    idMeeting: null,
+                    tipoCancelamento: "4"
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2979725313/API+de+clientes+-+Cancelamento+de+meeting'
+            },
+            {
+                id: '6-3',
+                name: 'meetingsAtualizarFila',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/meetings/pronto-atendimento/fila',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': '',
+                    'instancia_aplicacao': ''
+                },
+                body: JSON.stringify({
+                    fila: [
+                        {
+                            posicaoFila: '06',
+                            idSenha: "a3a51d16-e106-471a-99de-53461316a559"
+                        }
+                    ]
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2672001049/API+Clientes+-+Atualiza+o+de+fila'
+            },
+            {
+                id: '6-4',
+                name: 'meetingsConsultaCancelar',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/meetings/pronto-atendimento/cancelar',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': '',
+                    'instancia_aplicacao': ''
+                },
+                body: JSON.stringify({
+                    responsavelAtendimento: 'Ranniêr Reis',
+                    idSenha: "a3a51d16-e106-471a-99de-53461316a559"
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2672001058/API+Clientes+-+Cancelamento+da+consulta'
+            },
+            {
+                id: '6-5',
+                name: 'meetingsConsultaEncerrar',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/meetings/pronto-atendimento/encerrar',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': '',
+                    'instancia_aplicacao': ''
+                },
+                body: JSON.stringify({
+                    responsavelAtendimento: 'Ranniêr Reis',
+                    idSenha: "a3a51d16-e106-471a-99de-53461316a559",
+                    motivo: ''
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/2747826187/API+Clientes+-+Encerramento+da+consulta'
+            }
+        ]
+    },
+    {
+        id: '7',
+        name: 'Tarefas',
+        requests: [
+            {
+                id: '7-1',
+                name: 'tarefasDisparar',
+                method: 'POST',
+                url: 'https://api.mosiaomnichannel.com.br/clientes/mensageria/tasks',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': ''
+                },
+                body: JSON.stringify({
+                    chaveUnica: "90994281978",
+                    identificacaoTask: "tarefa_1",
+                    contato: {
+                        nome: "Ranniêr Reis",
+                        email: "rannier@mobilesaude.com.br",
+                        telefone: "48984137055"
+                    },
+                    elegivel: true,
+                    execucao: formattedDate,
+                    expiracao: formattedDate,
+                    macros: {
+                        key1: "value1",
+                        key2: "value2"
+                    },
+                    protocolo: "protocoloXYZ",
+                    variaveis: [
+                        { name_1: "variavel1", value_1: "valor1" },
+                        { name_2: "variavel2", value_2: "valor2" }
+                    ]
+                }, null, 2),
+                docs: 'Link documentação\nhttps://mobilesaudejira.atlassian.net/wiki/spaces/MO/pages/3274571789/Tarefas+do+Chatbot'
+            }
+        ]
     }
 ];
