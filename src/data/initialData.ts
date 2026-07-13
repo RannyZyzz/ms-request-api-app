@@ -352,8 +352,8 @@ export const initialFolders: Folder[] = [
           {
             chaveUnica: "90994281978",
             msg: "[API envio de push] - Nova notícia!",
-            idFuncionalidade: 0,
-            idRegistro: 945,
+            idFuncionalidade: "0",
+            idRegistro: "945",
             msgRegistrarPush: true,
           },
           null,
